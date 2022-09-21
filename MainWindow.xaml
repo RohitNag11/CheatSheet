@@ -9,14 +9,14 @@
     <StackPanel>
         <Grid x:Name="AppTitleBar">
             <Image
-                Width="16"
-                Height="16"
-                Margin="8,0"
+                Width="10"
+                Height="10"
+                Margin="5"
                 HorizontalAlignment="Left"
                 Source="Assets/Square44x44Logo.scale-200.png" />
             <TextBlock
                 x:Name="AppTitleTextBlock"
-                Margin="28,0,0,0"
+                Margin="20,0,0,0"
                 VerticalAlignment="Center"
                 Style="{StaticResource CaptionTextBlockStyle}"
                 Text="CheatSheet"
