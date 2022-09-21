@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CheatSheet (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "CheatSheet (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
