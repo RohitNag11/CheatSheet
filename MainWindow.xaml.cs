@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,9 +19,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT;
+using Path = System.IO.Path;
 
 namespace CheatSheet
 {
@@ -80,8 +83,10 @@ namespace CheatSheet
         {
             this.InitializeComponent();
 
+            // TODO: test code is here to be reused elsewhere
             var appName = GetActiveWindowProcessName();
             System.Console.WriteLine(appName);
+            PrintCommands(appName);
 
             m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
             m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
@@ -223,6 +228,30 @@ namespace CheatSheet
             var filename = text.ToString().Split('\\')?.Last();
 
             return filename;
+        }
+
+        private void PrintCommands(string appName)
+        {
+            string json = ShortcutsData.Shortcuts;
+            var root = JsonConvert.DeserializeObject<ShortcutsJsonRoot>(json);
+
+            StringBuilder outputBuilder = new StringBuilder();
+            var appsArray = root.Apps;
+            foreach (var app in appsArray)
+            {
+                if (app.Name == appName)
+                {
+                    outputBuilder.AppendLine(app.FriendlyName + ":");
+                    foreach (var shortcut in app.Shortcuts)
+                    {
+                        outputBuilder.AppendLine("\t" + shortcut.Modifier + " + " + shortcut.Key + " : " + shortcut.Description);
+                    }
+                    break;
+                }
+            }
+
+            var output = outputBuilder.ToString();
+            System.Console.WriteLine(output);
         }
 
     }
