@@ -1,16 +1,23 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.UI.Xaml.Shapes;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security;
+using System.Security.Cryptography;
+using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT;
@@ -56,9 +63,25 @@ namespace CheatSheet
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")]
+        private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+        [DllImport("kernel32.dll")]
+        private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool CloseHandle(IntPtr hObject);
+        [DllImport("psapi.dll")]
+        private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
+
         public MainWindow()
         {
             this.InitializeComponent();
+
+            var appName = GetActiveWindowProcessName();
+            System.Console.WriteLine(appName);
 
             m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
             m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
@@ -184,5 +207,23 @@ namespace CheatSheet
             }
             SetBackdrop(newType);
         }
+
+        private string GetActiveWindowProcessName()
+        {
+            const int nChars = 256;
+            StringBuilder Buff = new StringBuilder(nChars);
+            IntPtr handle = GetForegroundWindow();
+            uint lpdwProcessId;
+            GetWindowThreadProcessId(handle, out lpdwProcessId);
+            IntPtr hProcess = OpenProcess(0x0410, false, lpdwProcessId);
+            StringBuilder text = new StringBuilder(1000);
+            GetModuleFileNameEx(hProcess, IntPtr.Zero, text, text.Capacity);
+            CloseHandle(hProcess);
+
+            var filename = text.ToString().Split('\\')?.Last();
+
+            return filename;
+        }
+
     }
 }
