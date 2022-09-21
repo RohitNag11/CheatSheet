@@ -7,13 +7,76 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <StackPanel>
-        <StackPanel Margin="20" Spacing="10">
-            <Button
-                x:Name="btnChangeBackdrop"
-                AutomationProperties.Name="ChangeBackdropButton"
-                Click="ChangeBackdropButton_Click"
-                Content="Change Backdrop" />
-            <TextBlock x:Name="tbChangeStatus" />
+        <Grid x:Name="AppTitleBar">
+            <Image
+                Width="16"
+                Height="16"
+                Margin="8,0"
+                HorizontalAlignment="Left"
+                Source="Assets/Square44x44Logo.scale-200.png" />
+            <TextBlock
+                x:Name="AppTitleTextBlock"
+                Margin="28,0,0,0"
+                VerticalAlignment="Center"
+                Style="{StaticResource CaptionTextBlockStyle}"
+                Text="CheatSheet"
+                TextWrapping="NoWrap" />
+        </Grid>
+        <!--  Main Content:  -->
+        <StackPanel Margin="10">
+            <!--  Forground App Title and Backdrop Toggle button  -->
+            <Grid Margin="0,5,0,20" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal">
+                    <Image
+                        x:Name="ForegroundAppImage"
+                        Width="35"
+                        Height="35"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Source="Assets/Square44x44Logo.scale-200.png" />
+                    <TextBlock
+                        x:Name="ForegroundAppTextBlock"
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource SubtitleTextBlockStyle}"
+                        Text="Foreground App Shortcuts"
+                        TextWrapping="NoWrap" />
+                </StackPanel>
+                <StackPanel
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="5">
+                    <TextBlock x:Name="tbChangeStatus" />
+                    <Button
+                        x:Name="btnChangeBackdrop"
+                        AutomationProperties.Name="ChangeBackdropButton"
+                        Click="ChangeBackdropButton_Click"
+                        Content="Change Backdrop" />
+                </StackPanel>
+            </Grid>
+            <!--  Shortcuts List Panel  -->
+            <StackPanel Margin="20,10,20,10" Orientation="Horizontal">
+                <TextBlock
+                    Margin="0,0,20,0"
+                    VerticalAlignment="Center"
+                    Text="Comment" />
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Content="Ctrl"
+                        IsEnabled="False"
+                        Style="{StaticResource AccentButtonStyle}" />
+                    <TextBlock
+                        Margin="3,0,3,0"
+                        VerticalAlignment="Center"
+                        Text="+" />
+                    <Button
+                        Content="/"
+                        IsEnabled="False"
+                        Style="{StaticResource AccentButtonStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <TextBlock x:Name="TestNameTb" />
         </StackPanel>
     </StackPanel>
 </Window>

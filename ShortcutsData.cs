@@ -41,7 +41,7 @@
     },
     {
       ""Name"": ""HxOutlook.exe"",
-      ""FriendlyName"": ""Mail"",
+      ""FriendlyName"": ""Outlook"",
       ""Shortcuts"": [
         {
           ""Modifier"": ""Ctrl"",

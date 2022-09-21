@@ -6,11 +6,13 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
@@ -23,7 +25,6 @@ using System.Text.Json.Serialization;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT;
-using Path = System.IO.Path;
 
 namespace CheatSheet
 {
@@ -85,7 +86,7 @@ namespace CheatSheet
 
             // TODO: test code is here to be reused elsewhere
             var appName = GetActiveWindowProcessName();
-            System.Console.WriteLine(appName);
+            Trace.WriteLine(appName);
             PrintCommands(appName);
 
             m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
@@ -95,9 +96,15 @@ namespace CheatSheet
             Title = "CheatSheet";
             // Hide default title bar.
             ExtendsContentIntoTitleBar = true;
+            //SetTitleBar(AppTitleBar);
+
+
+            var appFriendlyName = "Visual Studio";
+            ForegroundAppTextBlock.Text = GetTitle(appFriendlyName);
+            ForegroundAppImage.Source = GetIcon(appFriendlyName);
         }
 
-        public enum BackdropType
+        private enum BackdropType
         {
             DesktopAcrylic,
             DefaultColor,
@@ -108,7 +115,7 @@ namespace CheatSheet
         Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController m_acrylicController;
         Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
 
-        public void SetBackdrop(BackdropType type)
+        private void SetBackdrop(BackdropType type)
         {
             // Reset to default color. If the requested type is supported, we'll update to that.
             m_currentBackdrop = BackdropType.DefaultColor;
@@ -249,10 +256,20 @@ namespace CheatSheet
                     break;
                 }
             }
-
-            var output = outputBuilder.ToString();
-            System.Console.WriteLine(output);
         }
 
+        private string GetTitle(string appFriendlyName)
+        {
+            return appFriendlyName + " Shortcuts";
+        }
+
+        private BitmapImage GetIcon(string appFriendlyName)
+        {
+            var iconPath = appFriendlyName.ToLower();
+            char[] whitespace = new char[] { ' ', '\t', '\r', '\n' };
+            iconPath = String.Join("-", iconPath.Split(whitespace, StringSplitOptions.RemoveEmptyEntries));
+            var uri = new Uri("ms-appx:///Assets/AppIcons/" + iconPath + "-icon.png");
+            return new BitmapImage(uri);
+        }
     }
 }
