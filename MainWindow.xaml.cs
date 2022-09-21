@@ -239,7 +239,7 @@ namespace CheatSheet
             var appsArray = root.Apps;
             foreach (var app in appsArray)
             {
-                if (app.Name == appName)
+                if (app.Name.ToLower() == appName.ToLower())
                 {
                     outputBuilder.AppendLine(app.FriendlyName + ":");
                     foreach (var shortcut in app.Shortcuts)
