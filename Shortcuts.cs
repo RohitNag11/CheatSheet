@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
+
 public class App
 {
     [JsonProperty("Name")]

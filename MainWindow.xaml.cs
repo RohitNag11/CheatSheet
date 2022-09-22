@@ -80,40 +80,41 @@ namespace CheatSheet
         [DllImport("psapi.dll")]
         private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
 
-        public MainWindow()
-        {
-            this.InitializeComponent();
-
-            // TODO: test code is here to be reused elsewhere
-            var appName = GetActiveWindowProcessName();
-            Trace.WriteLine(appName);
-            PrintCommands(appName);
-
-            m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
-            m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
-
-            SetBackdrop(BackdropType.DesktopAcrylic);
-            Title = "CheatSheet";
-            // Hide default title bar.
-            ExtendsContentIntoTitleBar = true;
-            //SetTitleBar(AppTitleBar);
-
-
-            var appFriendlyName = "Visual Studio";
-            ForegroundAppTextBlock.Text = GetTitle(appFriendlyName);
-            ForegroundAppImage.Source = GetIcon(appFriendlyName);
-        }
-
+        
+        WindowsSystemDispatcherQueueHelper m_wsdqHelper;
+        BackdropType m_currentBackdrop;
+        Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController m_acrylicController;
+        Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
+        global::App m_activeApp;
         private enum BackdropType
         {
             DesktopAcrylic,
             DefaultColor,
         }
 
-        WindowsSystemDispatcherQueueHelper m_wsdqHelper;
-        BackdropType m_currentBackdrop;
-        Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController m_acrylicController;
-        Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
+        public MainWindow()
+        {
+            this.InitializeComponent();
+
+            //// TODO: test code is here to be reused elsewhere
+            //var appName = GetActiveWindowProcessName();
+            //Trace.WriteLine(appName);
+            //PrintCommands(appName);
+
+            m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
+            m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
+
+            this.SetBackdrop(BackdropType.DesktopAcrylic);
+            Title = "CheatSheet";
+            // Hide default title bar.
+            ExtendsContentIntoTitleBar = true;
+            //SetTitleBar(AppTitleBar);
+
+            this.InitializeActiveAppData();
+            var appFriendlyName = m_activeApp.FriendlyName;
+            ForegroundAppTextBlock.Text = GetActiveAppTitle();
+            ForegroundAppImage.Source = GetActiveAppIcon();
+        }
 
         private void SetBackdrop(BackdropType type)
         {
@@ -275,13 +276,30 @@ namespace CheatSheet
             Trace.WriteLine(output);
         }
 
-        private string GetTitle(string appFriendlyName)
+        private void InitializeActiveAppData()
         {
+            var appName = GetActiveWindowProcessName();
+            string json = ShortcutsData.Shortcuts;
+            var root = JsonConvert.DeserializeObject<ShortcutsJsonRoot>(json);
+            var appsArray = root.Apps;
+            foreach (var app in appsArray)
+            {
+                if (app.Name.ToLower() == appName.ToLower())
+                {
+                    m_activeApp = app;
+                }
+            }
+        }
+
+        private string GetActiveAppTitle()
+        {
+            var appFriendlyName = m_activeApp.FriendlyName;
             return appFriendlyName + " Shortcuts";
         }
 
-        private BitmapImage GetIcon(string appFriendlyName)
+        private BitmapImage GetActiveAppIcon()
         {
+            var appFriendlyName = m_activeApp.FriendlyName;
             var iconPath = appFriendlyName.ToLower();
             char[] whitespace = new char[] { ' ', '\t', '\r', '\n' };
             iconPath = String.Join("-", iconPath.Split(whitespace, StringSplitOptions.RemoveEmptyEntries));

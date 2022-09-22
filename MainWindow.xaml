@@ -6,8 +6,16 @@
     xmlns:local="using:CheatSheet"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <StackPanel>
-        <Grid x:Name="AppTitleBar">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <!--  Title Bar:  -->
+        <Grid
+            x:Name="AppTitleBarGrid"
+            Grid.Row="0"
+            Margin="5">
             <Image
                 Width="10"
                 Height="10"
@@ -23,9 +31,20 @@
                 TextWrapping="NoWrap" />
         </Grid>
         <!--  Main Content:  -->
-        <StackPanel Margin="10">
+        <Grid
+            x:Name="MainContentGrid"
+            Grid.Row="1"
+            Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
             <!--  Forground App Title and Backdrop Toggle button  -->
-            <Grid Margin="0,5,0,20" HorizontalAlignment="Stretch">
+            <Grid
+                x:Name="HeaderBarGrid"
+                Grid.Row="0"
+                Margin="0,0,0,20"
+                HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal">
                     <Image
                         x:Name="ForegroundAppImage"
@@ -56,27 +75,107 @@
                 </StackPanel>
             </Grid>
             <!--  Shortcuts List Panel  -->
-            <StackPanel Margin="20,10,20,10" Orientation="Horizontal">
-                <TextBlock
-                    Margin="0,0,20,0"
-                    VerticalAlignment="Center"
-                    Text="Comment" />
-                <StackPanel Orientation="Horizontal">
-                    <Button
-                        Content="Ctrl"
-                        IsEnabled="False"
-                        Style="{StaticResource AccentButtonStyle}" />
-                    <TextBlock
-                        Margin="3,0,3,0"
-                        VerticalAlignment="Center"
-                        Text="+" />
-                    <Button
-                        Content="/"
-                        IsEnabled="False"
-                        Style="{StaticResource AccentButtonStyle}" />
+            <ScrollViewer
+                x:Name="ShortcutListScrollViewer"
+                Grid.Row="1"
+                IsVerticalScrollChainingEnabled="False">
+                <StackPanel Margin="10" Spacing="40">
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
+                            Text="Actions" />
+                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,20,0"
+                                VerticalAlignment="Center"
+                                Text="Comment" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    Content="Ctrl"
+                                    IsEnabled="False"
+                                    Style="{StaticResource AccentButtonStyle}" />
+                                <TextBlock
+                                    Margin="3,0,3,0"
+                                    VerticalAlignment="Center"
+                                    Text="+" />
+                                <Button
+                                    Content="/"
+                                    IsEnabled="False"
+                                    Style="{StaticResource AccentButtonStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,20,0"
+                                VerticalAlignment="Center"
+                                Text="Un-comment" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    Content="Ctrl"
+                                    IsEnabled="False"
+                                    Style="{StaticResource AccentButtonStyle}" />
+                                <TextBlock
+                                    Margin="3,0,3,0"
+                                    VerticalAlignment="Center"
+                                    Text="+" />
+                                <Button
+                                    Content="/"
+                                    IsEnabled="False"
+                                    Style="{StaticResource AccentButtonStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
+                            Text="Actions" />
+                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,20,0"
+                                VerticalAlignment="Center"
+                                Text="Comment" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    Content="Ctrl"
+                                    IsEnabled="False"
+                                    Style="{StaticResource AccentButtonStyle}" />
+                                <TextBlock
+                                    Margin="3,0,3,0"
+                                    VerticalAlignment="Center"
+                                    Text="+" />
+                                <Button
+                                    Content="/"
+                                    IsEnabled="False"
+                                    Style="{StaticResource AccentButtonStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,20,0"
+                                VerticalAlignment="Center"
+                                Text="Un-comment" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    Content="Ctrl"
+                                    IsEnabled="False"
+                                    Style="{StaticResource AccentButtonStyle}" />
+                                <TextBlock
+                                    Margin="3,0,3,0"
+                                    VerticalAlignment="Center"
+                                    Text="+" />
+                                <Button
+                                    Content="/"
+                                    IsEnabled="False"
+                                    Style="{StaticResource AccentButtonStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-            <TextBlock x:Name="TestNameTb" />
-        </StackPanel>
-    </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!--<StackPanel Margin="15">
+        </StackPanel>-->
+    </Grid>
 </Window>
