@@ -249,13 +249,30 @@ namespace CheatSheet
                 if (app.Name.ToLower() == appName.ToLower())
                 {
                     outputBuilder.AppendLine(app.FriendlyName + ":");
-                    foreach (var shortcut in app.Shortcuts)
+                    foreach (var shortcutGroup in app.ShortcutGroups)
                     {
-                        outputBuilder.AppendLine("\t" + shortcut.Modifier + " + " + shortcut.Key + " : " + shortcut.Description);
+                        outputBuilder.AppendLine("  " + shortcutGroup.Name);
+                        foreach (var shortcut in shortcutGroup.Shortcuts)
+                        {
+                            outputBuilder.Append("    ");
+                            foreach (var keyCombination in shortcut.Keys)
+                            {
+                                foreach (var key in keyCombination.SkipLast(1))
+                                {
+                                    outputBuilder.Append(key + " + ");
+                                }
+                                outputBuilder.Append(keyCombination.Last() + " ");
+                            }
+
+                            outputBuilder.AppendLine(": " + shortcut.Description);
+                        }
                     }
                     break;
                 }
             }
+
+            var output = outputBuilder.ToString();
+            Trace.WriteLine(output);
         }
 
         private string GetTitle(string appFriendlyName)
