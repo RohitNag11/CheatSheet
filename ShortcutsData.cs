@@ -4,6 +4,47 @@
 {
   ""Apps"": [
     {
+      ""Name"": ""system"",
+      ""FriendlyName"": ""General OS"",
+      ""ShortcutGroups"": [
+        {
+          ""Name"": ""General"",
+          ""Shortcuts"": [
+            {
+              ""Keys"": [
+                [""Ctrl"", ""C""]
+              ],
+              ""Description"": ""Copy"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""V""]
+              ],
+              ""Description"": ""Paste"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""X""]
+              ],
+              ""Description"": ""Cut text"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""Z""]
+              ],
+              ""Description"": ""Undo"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""S""]
+              ],
+              ""Description"": ""Save"",
+            }
+          ]
+        }
+      ]
+    },
+    {
       ""Name"": ""notepad.exe"",
       ""FriendlyName"": ""Notepad"",
       ""ShortcutGroups"": [

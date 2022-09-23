@@ -287,14 +287,23 @@ namespace CheatSheet
             string json = ShortcutsData.Shortcuts;
             var root = JsonConvert.DeserializeObject<ShortcutsJsonRoot>(json);
             var appsArray = root.Apps;
+            var system = new AppSummary();
             foreach (var app in appsArray)
             {
                 if (app.Name.ToLower() == appName.ToLower())
                 {
                     m_activeApp = app;
                     m_shortcutGroups = app.ShortcutGroups;
+                    return;
+                }
+                if (app.Name.ToLower() == "system")
+                {
+                    system = app;
                 }
             }
+            m_activeApp = system;
+            m_shortcutGroups = system.ShortcutGroups;
+            return;
         }
 
         private string GetActiveAppTitle()
