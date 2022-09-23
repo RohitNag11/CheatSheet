@@ -33,8 +33,7 @@
         <!--  Main Content:  -->
         <Grid
             x:Name="MainContentGrid"
-            Grid.Row="1"
-            Margin="15">
+            Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
@@ -43,8 +42,8 @@
             <Grid
                 x:Name="HeaderBarGrid"
                 Grid.Row="0"
-                Margin="0,0,0,20"
-                HorizontalAlignment="Stretch">
+                Margin="20"
+                HorizontalAlignment="Stretch" MinWidth="450">
                 <StackPanel Orientation="Horizontal">
                     <Image
                         x:Name="ForegroundAppImage"
@@ -85,22 +84,24 @@
                 </StackPanel>
             </Grid>
             <!--  Shortcuts List Panel  -->
-            <ItemsRepeaterScrollHost x:Name="ShortcutListTracker" Grid.Row="1">
+            <ItemsRepeaterScrollHost x:Name="ShortcutListTracker" Grid.Row="1" MinWidth="450">
                 <ScrollViewer>
                     <ScrollViewer.Resources>
                         <DataTemplate x:Key="ShortcutGroupDataTemplate" x:DataType="local:ShortcutGroup">
                             <StackPanel
-                                Width="300"
+                                Width="400"
                                 Margin="0,0,20,30"
-                                Spacing="10">
+                                Spacing="15">
                                 <TextBlock
                                     VerticalAlignment="Center"
                                     Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
                                     Text="{x:Bind Name}" />
-                                <ItemsRepeater
+                                <StackPanel Margin="5 0 0 0">
+                                    <ItemsRepeater
                                     x:Name="ShortcutRepeater"
                                     ItemTemplate="{StaticResource ShortcutDataTemplate}"
                                     ItemsSource="{x:Bind Shortcuts}" />
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                         <DataTemplate x:Key="ShortcutDataTemplate" x:DataType="local:Shortcut">
@@ -146,7 +147,7 @@
                             ItemTemplate="{StaticResource ShortcutGroupDataTemplate}"
                             ItemsSource="{x:Bind m_shortcutGroups}">
                             <ItemsRepeater.Layout>
-                                <UniformGridLayout Orientation="Vertical" />
+                                <local:VariedImageSizeLayout Width="500"/>
                             </ItemsRepeater.Layout>
                         </ItemsRepeater>
 

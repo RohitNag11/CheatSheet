@@ -124,9 +124,15 @@
             },
             {
               ""Keys"": [
-                [""F12"", ""Alt"", ""F12""]
+                [""F12""]
               ],
               ""Description"": ""Go to Definition"",
+            },
+            {
+              ""Keys"": [
+                [""Alt"", ""F12""]
+              ],
+              ""Description"": ""Peak to Definition"",
             },
             {
               ""Keys"": [
@@ -174,18 +180,215 @@
                 [""Ctrl"", ""K""], [""Ctrl"", ""U""]
               ],
               ""Description"": ""Uncomment"",
-            }
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""˄"", ""L""]
+              ],
+              ""Description"": ""Delete Line"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""▲""]
+              ],
+              ""Description"": ""Move Code Up"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""▲""]
+              ],
+              ""Description"": ""Move Code Down"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""▲""]
+              ],
+              ""Description"": ""Move Code Down"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""K""], [""Ctrl"", ""D""]
+              ],
+              ""Description"": ""Format Document"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""K""], [""Ctrl"", ""S""]
+              ],
+              ""Description"": ""Surround with"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""R""], [""Ctrl"", ""R""]
+              ],
+              ""Description"": ""Rename"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""R""], [""Ctrl"", ""E""]
+              ],
+              ""Description"": ""Encapsulate Field"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""R""], [""Ctrl"", ""G""]
+              ],
+              ""Description"": ""Remove and Sort Using"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""R""], [""Ctrl"", ""M""]
+              ],
+              ""Description"": ""Extract Method"",
+            },
           ]
         },
         {
-          ""Name"": ""Navigation"",
+          ""Name"": ""Debugging and Testing"",
           ""Shortcuts"": [
             {
               ""Keys"": [
-                [""Ctrl"", ""P""]
+                [""F5""]
               ],
-              ""Description"": ""Go to file"",
-            }
+              ""Description"": ""Debug"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""5""]
+              ],
+              ""Description"": ""Run"",
+            },
+            {
+              ""Keys"": [
+                [""˄"", ""5""]
+              ],
+              ""Description"": ""Stop"",
+            },
+            {
+              ""Keys"": [
+                [""F9""]
+              ],
+              ""Description"": ""Toggle Breakpoint"",
+            },
+            {
+              ""Keys"": [
+                [""F10""]
+              ],
+              ""Description"": ""Step Over"",
+            },
+            {
+              ""Keys"": [
+                [""F11""]
+              ],
+              ""Description"": ""Step Into"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""R""], [""Ctrl"", ""A""]
+              ],
+              ""Description"": ""Debug All Tests"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""R""], [""A""]
+              ],
+              ""Description"": ""Run All Tests"",
+            },
+          ]
+        },
+        {
+          ""Name"": ""Window Management"",
+          ""Shortcuts"": [
+            {
+              ""Keys"": [
+                [""Ctrl"", ""["", ""S""]
+              ],
+              ""Description"": ""Set Active File in Solution Explorer"",
+            },
+{
+              ""Keys"": [
+                [""Ctrl"", ""Alt"", ""L""]
+              ],
+              ""Description"": ""Open Solution Explorer"",
+            },
+{
+              ""Keys"": [
+                [""Ctrl"", ""Alt"", ""O""]
+              ],
+              ""Description"": ""Open Output Window"",
+            },
+{
+              ""Keys"": [
+                [""Ctrl"", ""\\"", ""E""]
+              ],
+              ""Description"": ""Open Error List"",
+            },
+{
+              ""Keys"": [
+                [""Ctrl"", ""\\""], [""Ctrl"", ""M""]
+              ],
+              ""Description"": ""Open Team Explorer"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""Alt"", ""B""]
+              ],
+              ""Description"": ""Open Breakpoints"",
+            },
+            {
+              ""Keys"": [
+                [""Alt"", ""F6""]
+              ],
+              ""Description"": ""Next Tool Window"",
+            },
+            {
+              ""Keys"": [
+                [""˄"", ""Alt"", ""F6""]
+              ],
+              ""Description"": ""Previous Tool Window"",
+            },
+            {
+              ""Keys"": [
+                [""˄"", ""Esc""]
+              ],
+              ""Description"": ""Close Current Tool Window"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""Alt"", ""PgUp""]
+              ],
+              ""Description"": ""Go to Left Document"",
+            },
+            {
+              ""Keys"": [
+                [""PgDn""]
+              ],
+              ""Description"": ""Go to Right Document"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""tab""]
+              ],
+              ""Description"": ""Most Recent Open Doc."",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""˄"", ""tab""]
+              ],
+              ""Description"": ""Least Recent Open Doc."",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""Alt"", ""⌂""]
+              ],
+              ""Description"": ""Keep Preview Window Open"",
+            },
+            {
+              ""Keys"": [
+                [""˄"", ""Alt"", ""↵""]
+              ],
+              ""Description"": ""Full Screen"",
+            },
           ]
         }
       ]
