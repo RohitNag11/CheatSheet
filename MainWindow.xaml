@@ -55,7 +55,7 @@
                         Source="Assets/Square44x44Logo.scale-200.png" />
                     <TextBlock
                         x:Name="ForegroundAppTextBlock"
-                        Margin="8,0,0,0"
+                        Margin="10,0,0,0"
                         VerticalAlignment="Center"
                         Style="{StaticResource SubtitleTextBlockStyle}"
                         Text="Foreground App Shortcuts"
@@ -72,108 +72,88 @@
                         AutomationProperties.Name="ChangeBackdropButton"
                         Click="ChangeBackdropButton_Click"
                         Content="Change Backdrop" />
+                    <!--<ToggleSwitch
+                        x:Name="btnChangeBackdrop"
+                        Width="10"
+                        AutomationProperties.Name="ChangeBackdropButton"
+                        Toggled="ChangeBackdropButton_Click" />-->
+                    <!--<ToggleButton
+                        x:Name="btnChangeBackdrop"
+                        AutomationProperties.Name="ChangeBackdropButton"
+                        Click="ChangeBackdropButton_Click"
+                        Content="Transparant Backdrop" />-->
                 </StackPanel>
             </Grid>
             <!--  Shortcuts List Panel  -->
-            <ScrollViewer
-                x:Name="ShortcutListScrollViewer"
-                Grid.Row="1"
-                IsVerticalScrollChainingEnabled="False">
-                <StackPanel Margin="10" Spacing="40">
-                    <StackPanel Spacing="10">
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
-                            Text="Actions" />
-                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-                            <TextBlock
-                                Margin="0,0,20,0"
-                                VerticalAlignment="Center"
-                                Text="Comment" />
-                            <StackPanel Orientation="Horizontal">
-                                <Button
-                                    Content="Ctrl"
-                                    IsEnabled="False"
-                                    Style="{StaticResource AccentButtonStyle}" />
+            <ItemsRepeaterScrollHost x:Name="ShortcutListTracker" Grid.Row="1">
+                <ScrollViewer>
+                    <ScrollViewer.Resources>
+                        <DataTemplate x:Key="ShortcutGroupDataTemplate" x:DataType="local:ShortcutGroup">
+                            <StackPanel
+                                Width="300"
+                                Margin="0,0,20,30"
+                                Spacing="10">
                                 <TextBlock
-                                    Margin="3,0,3,0"
                                     VerticalAlignment="Center"
-                                    Text="+" />
-                                <Button
-                                    Content="/"
-                                    IsEnabled="False"
-                                    Style="{StaticResource AccentButtonStyle}" />
+                                    Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
+                                    Text="{x:Bind Name}" />
+                                <ItemsRepeater
+                                    x:Name="ShortcutRepeater"
+                                    ItemTemplate="{StaticResource ShortcutDataTemplate}"
+                                    ItemsSource="{x:Bind Shortcuts}" />
                             </StackPanel>
-                        </StackPanel>
-                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-                            <TextBlock
-                                Margin="0,0,20,0"
-                                VerticalAlignment="Center"
-                                Text="Un-comment" />
-                            <StackPanel Orientation="Horizontal">
-                                <Button
-                                    Content="Ctrl"
-                                    IsEnabled="False"
-                                    Style="{StaticResource AccentButtonStyle}" />
+                        </DataTemplate>
+                        <DataTemplate x:Key="ShortcutDataTemplate" x:DataType="local:Shortcut">
+                            <StackPanel
+                                Margin="0,0,0,10"
+                                VerticalAlignment="Top"
+                                Orientation="Horizontal">
                                 <TextBlock
-                                    Margin="3,0,3,0"
+                                    Margin="0,0,20,0"
                                     VerticalAlignment="Center"
-                                    Text="+" />
-                                <Button
-                                    Content="/"
-                                    IsEnabled="False"
-                                    Style="{StaticResource AccentButtonStyle}" />
+                                    Text="{x:Bind Description}" />
+                                <ItemsRepeater
+                                    x:Name="ShortcutRepeater"
+                                    ItemTemplate="{StaticResource KeysDataTemplate}"
+                                    ItemsSource="{x:Bind Keys}">
+                                    <ItemsRepeater.Layout>
+                                        <StackLayout Orientation="Horizontal" Spacing="15" />
+                                    </ItemsRepeater.Layout>
+                                </ItemsRepeater>
                             </StackPanel>
-                        </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate x:Key="KeysDataTemplate">
+                            <ItemsRepeater
+                                x:Name="KeysRepeater"
+                                ItemTemplate="{StaticResource KeyDataTemplate}"
+                                ItemsSource="{Binding}">
+                                <ItemsRepeater.Layout>
+                                    <StackLayout Orientation="Horizontal" Spacing="5" />
+                                </ItemsRepeater.Layout>
+                            </ItemsRepeater>
+                        </DataTemplate>
+
+                        <DataTemplate x:Key="KeyDataTemplate" x:DataType="x:String">
+                            <Button
+                                Content="{Binding}"
+                                IsEnabled="False"
+                                Style="{StaticResource AccentButtonStyle}" />
+                        </DataTemplate>
+                    </ScrollViewer.Resources>
+                    <StackPanel x:Name="ShortcutList" Margin="20">
+                        <ItemsRepeater
+                            x:Name="ShortcutGroupRepeater"
+                            ItemTemplate="{StaticResource ShortcutGroupDataTemplate}"
+                            ItemsSource="{x:Bind m_shortcutGroups}">
+                            <ItemsRepeater.Layout>
+                                <UniformGridLayout Orientation="Vertical" />
+                            </ItemsRepeater.Layout>
+                        </ItemsRepeater>
+
                     </StackPanel>
-                    <StackPanel Spacing="10">
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
-                            Text="Actions" />
-                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-                            <TextBlock
-                                Margin="0,0,20,0"
-                                VerticalAlignment="Center"
-                                Text="Comment" />
-                            <StackPanel Orientation="Horizontal">
-                                <Button
-                                    Content="Ctrl"
-                                    IsEnabled="False"
-                                    Style="{StaticResource AccentButtonStyle}" />
-                                <TextBlock
-                                    Margin="3,0,3,0"
-                                    VerticalAlignment="Center"
-                                    Text="+" />
-                                <Button
-                                    Content="/"
-                                    IsEnabled="False"
-                                    Style="{StaticResource AccentButtonStyle}" />
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-                            <TextBlock
-                                Margin="0,0,20,0"
-                                VerticalAlignment="Center"
-                                Text="Un-comment" />
-                            <StackPanel Orientation="Horizontal">
-                                <Button
-                                    Content="Ctrl"
-                                    IsEnabled="False"
-                                    Style="{StaticResource AccentButtonStyle}" />
-                                <TextBlock
-                                    Margin="3,0,3,0"
-                                    VerticalAlignment="Center"
-                                    Text="+" />
-                                <Button
-                                    Content="/"
-                                    IsEnabled="False"
-                                    Style="{StaticResource AccentButtonStyle}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-            </ScrollViewer>
+
+                </ScrollViewer>
+            </ItemsRepeaterScrollHost>
         </Grid>
         <!--<StackPanel Margin="15">
         </StackPanel>-->

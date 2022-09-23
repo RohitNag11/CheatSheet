@@ -15,35 +15,30 @@
                 [""Ctrl"", ""C""]
               ],
               ""Description"": ""Copy text"",
-              ""Extended"": ""Copy text to clipboard""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""V""]
               ],
               ""Description"": ""Paste text"",
-              ""Extended"": ""Paste text from clipboard""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""X""]
               ],
               ""Description"": ""Cut text"",
-              ""Extended"": ""Cut text to clipboard""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""Z""]
               ],
               ""Description"": ""Undo"",
-              ""Extended"": ""Undo last change""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""S""]
               ],
               ""Description"": ""Save"",
-              ""Extended"": ""Save the latest changes""
             }
           ]
         }
@@ -61,35 +56,30 @@
                 [""Ctrl"", ""N""]
               ],
               ""Description"": ""New mail"",
-              ""Extended"": ""Begin a new e-mail""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""R""]
               ],
               ""Description"": ""Reply"",
-              ""Extended"": ""Reply to the selected e-mail""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""F""]
               ],
               ""Description"": ""Forward"",
-              ""Extended"": ""Forward the selected e-mail""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""U""]
               ],
               ""Description"": ""Mark as unread"",
-              ""Extended"": ""Mark an e-mail as unread""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""Q""]
               ],
               ""Description"": ""Mark as read"",
-              ""Extended"": ""Mark an e-mail as read""
             }
           ]
         }
@@ -100,43 +90,90 @@
       ""FriendlyName"": ""Visual Studio"",
       ""ShortcutGroups"": [
         {
-          ""Name"": ""Actions"",
+          ""Name"": ""Search and Navigation"",
           ""Shortcuts"": [
             {
               ""Keys"": [
-                [""Ctrl"", ""A""]
+                [""Ctrl"", ""Q""]
               ],
-              ""Description"": ""Select all"",
-              ""Extended"": ""Select all in the current view""
+              ""Description"": ""Visual Studio search"",
             },
             {
               ""Keys"": [
-                [""Ctrl"", ""N""]
+                [""Ctrl"", ""T""]
               ],
-              ""Description"": ""New file"",
-              ""Extended"": ""Create a new file""
+              ""Description"": ""Go to All"",
             },
             {
               ""Keys"": [
-                [""Ctrl"", ""O""]
+                [""Ctrl"", ""1"", ""T""]
               ],
-              ""Description"": ""Open file"",
-              ""Extended"": ""Open a file""
+              ""Description"": ""Go to Type"",
             },
             {
               ""Keys"": [
-                [""Ctrl"", ""S""]
+                [""Ctrl"", ""-""]
               ],
-              ""Description"": ""Save"",
-              ""Extended"": ""Save changes to a file""
+              ""Description"": ""Navigate Backward"",
             },
             {
               ""Keys"": [
-                [""Ctrl"", ""K""],
-                [""Ctrl"", ""F""]
+                [""Ctrl"", ""˄"", ""-""]
               ],
-              ""Description"": ""Format"",
-              ""Extended"": ""Format the current file""
+              ""Description"": ""Navigate Forward"",
+            },
+            {
+              ""Keys"": [
+                [""F12"", ""Alt"", ""F12""]
+              ],
+              ""Description"": ""Go to Definition"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""F12""]
+              ],
+              ""Description"": ""Go to Implementation"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""˄"", ""F12""]
+              ],
+              ""Description"": ""Go to Next Error"",
+            },
+            {
+              ""Keys"": [
+                [""F8""]
+              ],
+              ""Description"": ""Go to Next"",
+            }
+          ]
+        },
+        {
+          ""Name"": ""Editing and Refactoring"",
+          ""Shortcuts"": [
+            {
+              ""Keys"": [
+                [""Alt"", ""↵""]
+              ],
+              ""Description"": ""Quick Actions"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""K""]
+              ],
+              ""Description"": ""Method Info"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""K""], [""Ctrl"", ""C""]
+              ],
+              ""Description"": ""Comment"",
+            },
+            {
+              ""Keys"": [
+                [""Ctrl"", ""K""], [""Ctrl"", ""U""]
+              ],
+              ""Description"": ""Uncomment"",
             }
           ]
         },
@@ -148,7 +185,6 @@
                 [""Ctrl"", ""P""]
               ],
               ""Description"": ""Go to file"",
-              ""Extended"": ""Go to a file""
             }
           ]
         }
@@ -166,28 +202,24 @@
                 [""Ctrl"", ""A""]
               ],
               ""Description"": ""Select all"",
-              ""Extended"": ""Select all in the current view""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""N""]
               ],
               ""Description"": ""New file"",
-              ""Extended"": ""Create a new file""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""O""]
               ],
               ""Description"": ""Open file"",
-              ""Extended"": ""Open a file""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""S""]
               ],
               ""Description"": ""Save"",
-              ""Extended"": ""Save changes to a file""
             },
             {
               ""Keys"": [
@@ -195,7 +227,6 @@
                 [""Ctrl"", ""F""]
               ],
               ""Description"": ""Format"",
-              ""Extended"": ""Format the current file""
             }
           ]
         },
@@ -207,7 +238,6 @@
                 [""Ctrl"", ""P""]
               ],
               ""Description"": ""Go to file"",
-              ""Extended"": ""Go to a file""
             }
           ]
         }
@@ -225,35 +255,30 @@
                 [""Ctrl"", ""N""]
               ],
               ""Description"": ""New mail"",
-              ""Extended"": ""Begin a new e-mail""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""R""]
               ],
               ""Description"": ""Reply"",
-              ""Extended"": ""Reply to the selected e-mail""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""F""]
               ],
               ""Description"": ""Forward"",
-              ""Extended"": ""Forward the selected e-mail""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""U""]
               ],
               ""Description"": ""Mark as unread"",
-              ""Extended"": ""Mark an e-mail as unread""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""Q""]
               ],
               ""Description"": ""Mark as read"",
-              ""Extended"": ""Mark an e-mail as read""
             }
           ]
         }
@@ -271,35 +296,30 @@
                 [""Ctrl"", ""D""]
               ],
               ""Description"": ""Bookmark"",
-              ""Extended"": ""Bookmark the current page""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""F""]
               ],
               ""Description"": ""Find in page"",
-              ""Extended"": ""Find text in the page""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""N""]
               ],
               ""Description"": ""New window"",
-              ""Extended"": ""Open a new window""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""P""]
               ],
               ""Description"": ""Print"",
-              ""Extended"": ""Print the page""
             },
             {
               ""Keys"": [
                 [""Ctrl"", ""T""]
               ],
               ""Description"": ""New tab"",
-              ""Extended"": ""Open a new tab""
             }
           ]
         }

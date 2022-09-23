@@ -85,7 +85,8 @@ namespace CheatSheet
         BackdropType m_currentBackdrop;
         Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController m_acrylicController;
         Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
-        global::App m_activeApp;
+        AppSummary m_activeApp;
+        List<ShortcutGroup> m_shortcutGroups;
         private enum BackdropType
         {
             DesktopAcrylic,
@@ -114,13 +115,14 @@ namespace CheatSheet
             var appFriendlyName = m_activeApp.FriendlyName;
             ForegroundAppTextBlock.Text = GetActiveAppTitle();
             ForegroundAppImage.Source = GetActiveAppIcon();
+            //ShortcutGroupRepeater.ItemsSource = m_shortcutGroups;
+
         }
 
         private void SetBackdrop(BackdropType type)
         {
             // Reset to default color. If the requested type is supported, we'll update to that.
             m_currentBackdrop = BackdropType.DefaultColor;
-            ToolTipService.SetToolTip(btnChangeBackdrop, "Change to Acrylic Theme");
             tbChangeStatus.Text = "";
             if (m_acrylicController != null)
             {
@@ -136,7 +138,6 @@ namespace CheatSheet
             {
                 if (TrySetAcrylicBackdrop())
                 {
-                    ToolTipService.SetToolTip(btnChangeBackdrop, "Change to System Theme");
                     m_currentBackdrop = type;
                 }
                 else
@@ -168,6 +169,10 @@ namespace CheatSheet
                 m_acrylicController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
                 m_acrylicController.SetSystemBackdropConfiguration(m_configurationSource);
                 return true; // succeeded
+            }
+            else
+            {
+                btnChangeBackdrop.IsEnabled = false; // Disable backgdrop button
             }
 
             return false; // Acrylic is not supported on this system
@@ -287,6 +292,7 @@ namespace CheatSheet
                 if (app.Name.ToLower() == appName.ToLower())
                 {
                     m_activeApp = app;
+                    m_shortcutGroups = app.ShortcutGroups;
                 }
             }
         }
